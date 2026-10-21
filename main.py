@@ -54,7 +54,7 @@ def measure_download_speed() -> float:
         return 0.0
 
 @app.command()
-def main():
+def test():
     server_func.wait_for_server("google.com", interval=2)
     print()
     
