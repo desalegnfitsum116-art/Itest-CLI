@@ -1,4 +1,4 @@
-# WifiSpeedTest CLI
+# Itest CLI
 
 A lightweight, zero-bloat command-line interface tool to test your internet stability and measure download speeds right from your terminal. Built using Python, native networking libraries, and optimized with shell automation scripts.
 
@@ -18,7 +18,7 @@ You do not need to manually manage Python virtual environments or configure dire
 
 1. Clone or navigate to your local working package directory:
    ```bash
-   cd ~/Desktop/Projects/WifiSpeedTest
+   cd ~/Desktop/Projects/Itest
    ```
 
 2. Mark the deployment automation shell routine as runnable:
