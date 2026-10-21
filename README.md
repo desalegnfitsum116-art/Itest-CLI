@@ -41,13 +41,13 @@ Once installed successfully, open a fresh terminal instance in any directory pat
 ### Main Command
 To execute connection status verifications and calculate throughput bandwidth performance:
 ```bash
-wifispeed
+Itest test
 ```
 
 ### Help Information
 To view details regarding operational rules or manual parameter handling:
 ```bash
-wifispeed help
+Itest help
 ```
 
 ---
