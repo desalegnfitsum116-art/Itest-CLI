@@ -2,10 +2,10 @@
 
 # Configuration variables
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-SCRIPT_PATH="$DIR/main.py"
+SCRIPT_PATH="$DIR/Src/main.py"
 VENV_PATH="$DIR/.venv"
 VENV_PYTHON="$VENV_PATH/bin/python3"
-SYMLINK_NAME="/usr/local/bin/wifispeed"
+SYMLINK_NAME="/usr/local/bin/Itest"
 
 install_app() {
     echo "Starting installation..."

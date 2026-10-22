@@ -4,13 +4,14 @@ import time
 import urllib.request
 import typer
 from rich.progress import Progress, TextColumn, BarColumn, DownloadColumn, TransferSpeedColumn
-import server_func
+import server_func as server_func
+import json_func as data
 
 app = typer.Typer()
 
 
 def measure_download_speed() -> float:
-    url = "https://cloudflare.com"
+    url = data.load_data().get("server_host")
     
     progress = Progress(
         TextColumn("[bold blue]{task.description}"),
@@ -55,7 +56,7 @@ def measure_download_speed() -> float:
 
 @app.command()
 def test():
-    server_func.wait_for_server("google.com", interval=2)
+    server_func.wait_for_server(interval=2)
     print()
     
     actual_speed = measure_download_speed()
@@ -66,8 +67,48 @@ def test():
         typer.secho("\nCould not calculate speed.", fg=typer.colors.RED)
 
 @app.command()
+def set(var, val):
+    result = server_func.Set(var, val)
+    typer.secho(result, fg=typer.colors.CYAN)
+
+@app.command()
+def ping():
+    result = server_func.wait_for_server(interval=2)
+    typer.secho(result, fg=typer.colors.CYAN)
+
+@app.command()
+def list():
+    for var, val in data.load_data().items():
+        typer.secho(f"{var}: {val}", fg=typer.colors.YELLOW)
+
+@app.command()
 def help():
-    print("This is a live network CLI tool that validates status and dynamically evaluates download speeds.")
+    print("""
+Itest CLI — Lightweight Internet Toolkit
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Check connectivity, measure download speeds, and
+troubleshoot internet connection reliability.
+
+USAGE
+    Itest <command> [options]
+
+COMMANDS
+    test                         Test connectivity and download speed
+    set <variable> <value>       Update a configuration variable
+    help                         Display this help message
+
+EXAMPLES
+    Itest test
+    Itest set server_host cloudflare.com
+    Itest help
+
+CONFIGURATION
+    server_host                  Target host (default: google.com)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Lightweight. Simple. Built for the terminal.
+""")
 
 if __name__ == "__main__":
     app()
